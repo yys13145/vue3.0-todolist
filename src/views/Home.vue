@@ -9,14 +9,12 @@
 
 <script>
 
-import {defineComponent,ref} from 'vue'
+import {defineComponent,ref,reactive,toRefs} from 'vue'
  
 import NavFooter from '@/components/navFooter/NavFooter'
 import NavHeader from '@/components/navHeader/NavHeader.vue'
 import NavMain from '@/components/navMain/NavMain.vue'
 export default defineComponent({
-
-  
   name:'Home',
   //接收父组件数据
   props:{
@@ -29,13 +27,17 @@ export default defineComponent({
     NavFooter
   },
   setup(props,ctx){
-    let num = ref(10)
-    let name = ref('jack')
-    let arr = ref([0,1,2,3])
+    // let num = ref(10)
+    // let name = ref('jack')
+    // let arr = ref([0,1,2,3])
+    let data = reactive({
+      num:10,
+      name:'jack',
+      age:20,
+      arr: [1,2,3]
+    })
     return{
-      num,
-      name,
-      arr
+      ...toRefs(data)
     }
   }
 })
