@@ -2,9 +2,9 @@
   <nav-header></nav-header>
   <nav-main></nav-main>
   <nav-footer></nav-footer>
-  <div>{{ num }}</div>
+  <!-- <div>{{ num }}</div>
   <div>{{ name }}</div>
-    <div>{{ arr }}</div>
+    <div>{{ arr }}</div> -->
 </template>
 
 <script>
