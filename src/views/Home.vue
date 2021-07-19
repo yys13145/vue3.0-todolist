@@ -2,8 +2,9 @@
   <nav-header></nav-header>
   <nav-main></nav-main>
   <nav-footer></nav-footer>
-  <!-- <div>{{ num }}</div>
-  <div>{{ name }}</div>
+  <div @click="clickNum">{{ num }}</div>
+  <div @click="clickNum1">{{ num1 }}</div>
+  <!-- <div>{{ name }}</div>
     <div>{{ arr }}</div> -->
 </template>
 
@@ -27,7 +28,7 @@ export default defineComponent({
     NavFooter
   },
   setup(props,ctx){
-    // let num = ref(10)
+    let num1 = ref(20)
     // let name = ref('jack')
     // let arr = ref([0,1,2,3])
     let data = reactive({
@@ -36,8 +37,20 @@ export default defineComponent({
       age:20,
       arr: [1,2,3]
     })
+
+    let clickNum = () => {
+      console.log('num:'+data.num);
+    }
+
+    let clickNum1 = () => {
+      console.log('num1:'+num1.value);
+    }
+
     return{
-      ...toRefs(data)
+      ...toRefs(data),
+      num1,
+      clickNum,
+      clickNum1
     }
   }
 })
