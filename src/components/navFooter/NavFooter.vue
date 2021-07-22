@@ -3,7 +3,7 @@
     <div>
       已完成{{isComplete}} / 全部{{all}}
     </div>
-    <button v-if="isComplete>0">清除已完成</button>
+    <button class="clear" v-if="isComplete>0" @click="clear">清除已完成</button>
   </div>
 </template>
 
@@ -14,15 +14,20 @@ export default defineComponent({
   setup(){
     let isComplete = ref(1)
     let all = ref(3)
-
+    let clear = () =>{
+      console.log("clear!")
+    }
     return{
       isComplete,
-      all
+      all,
+      clear
     }
   }
 })
 </script>
 
 <style scoped lang="scss">
-
+.clear{
+  margin-top:6px;
+}
 </style>

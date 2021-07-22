@@ -1,11 +1,13 @@
 <template>
-  <nav-header></nav-header>
-  <nav-main></nav-main>
-  <nav-footer></nav-footer>
-  <div @click="clickNum">{{ num }}</div>
-  <div @click="clickNum1">{{ num1 }}</div>
+  <div class="main"> 
+    <nav-header></nav-header>
+    <nav-main></nav-main>
+    <nav-footer></nav-footer>
+    <!-- <div @click="clickNum">{{ num }}</div>
+    <div @click="clickNum1">{{ num1 }}</div> -->
   <!-- <div>{{ name }}</div>
     <div>{{ arr }}</div> -->
+  </div>
 </template>
 
 <script>
@@ -57,5 +59,9 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+.main{
+  width: 500px;
+  margin: 100px auto;
 
+}
 </style>
