@@ -7,12 +7,13 @@
     <div @click="clickNum1">{{ num1 }}</div> -->
   <!-- <div>{{ name }}</div>
     <div>{{ arr }}</div> -->
+    <div>{{addNum}}</div>
   </div>
 </template>
 
 <script>
 
-import {defineComponent,ref,reactive,toRefs} from 'vue'
+import {defineComponent,ref,reactive,toRefs,computed} from 'vue'
  
 import NavFooter from '@/components/navFooter/NavFooter'
 import NavHeader from '@/components/navHeader/NavHeader.vue'
@@ -31,19 +32,20 @@ export default defineComponent({
   },
   setup(props,ctx){
     let num1 = ref(20)
-    // let name = ref('jack')
-    // let arr = ref([0,1,2,3])
     let data = reactive({
       num:10,
       name:'jack',
       age:20,
       arr: [1,2,3]
     })
+    //计算属性，应用如购物车总价
+    let addNum = computed(()=>{
+      return num1.value + data.num
+    })
 
     let clickNum = () => {
       console.log('num:'+data.num);
     }
-
     let clickNum1 = () => {
       console.log('num1:'+num1.value);
     }
@@ -52,7 +54,8 @@ export default defineComponent({
       ...toRefs(data),
       num1,
       clickNum,
-      clickNum1
+      clickNum1,
+      addNum
     }
   }
 })
