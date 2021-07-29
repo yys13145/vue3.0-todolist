@@ -17,7 +17,6 @@ const routes = [
   {
     path: '/',
     name: 'Start',
-    //按需引入,懒加载
     component: Start
   }
 ]

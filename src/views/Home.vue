@@ -17,7 +17,7 @@
 
 import {defineComponent,ref,reactive,toRefs,computed} from 'vue'
 import { useStore } from "vuex";
-import { useRouter } from "vue-router"
+import { useRouter,useRoute } from "vue-router"
 
 import NavFooter from '@/components/navFooter/NavFooter'
 import NavHeader from '@/components/navHeader/NavHeader.vue'
@@ -39,14 +39,19 @@ export default defineComponent({
     let list = computed(()=>{
       return store.state.list
     })
-
-    let route = useRouter()
+    //全局路由对象
+    let router = useRouter()
+    //当前路由对象
+    let route = useRoute()
+    //路由传递的参数均会转换为字符串
+    console.log(route.query)
+     console.log(route.params)
     let gotoAbout = () =>{  
       //push可传入带参配置对象
       //back回退到上一页
       //forward去到下一页
       //go(number)正数前进，负数后退
-      route.push('/about')
+      router.push('/about')
     }
     // let num1 = ref(20)
     // let data = reactive({
