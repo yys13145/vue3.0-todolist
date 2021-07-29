@@ -15,7 +15,7 @@
 
 <script>
 
-import {defineComponent,ref,reactive,toRefs,computed} from 'vue'
+import {defineComponent,ref,reactive,toRefs,computed,onMounted,onUnmounted} from 'vue'
 import { useStore } from "vuex";
 import { useRouter,useRoute } from "vue-router"
 
@@ -34,7 +34,17 @@ export default defineComponent({
     NavMain,
     NavFooter
   },
+  //组件创建过程
   setup(props,ctx){
+
+    onMounted(() => {
+      //组件挂载过程
+      //数据初始化和初始数据请求，操作dom
+    })
+    onUnmounted(()=>{
+      //组件卸载的生命周期，跳转路由时触发
+      //清除定时器，闭包函数等
+    })
     let store = useStore()
     let list = computed(()=>{
       return store.state.list
