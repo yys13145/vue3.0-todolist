@@ -1,21 +1,21 @@
 <template>
   <div class="main"> 
-    <nav-header></nav-header>
-    <nav-main></nav-main>
-    <nav-footer></nav-footer>
+    <nav-header @add="add"></nav-header>
+    <nav-main :list='list'></nav-main>
+    <nav-footer :list='list'></nav-footer>
     <!-- <div @click="clickNum">{{ num }}</div>
     <div @click="clickNum1">{{ num1 }}</div> -->
   <!-- <div>{{ name }}</div>
     <div>{{ arr }}</div> -->
     <!-- <div>{{addNum}}</div> -->
-    <div>{{list}}</div>
-    <div @click="gotoAbout">跳转到about</div>
+    <!-- <div>{{list}}</div>
+    <div @click="gotoAbout">跳转到about</div> -->
   </div>
 </template>
 
 <script>
 
-import {defineComponent,ref,reactive,toRefs,computed,onMounted,onUnmounted} from 'vue'
+import {defineComponent,computed,onMounted,onUnmounted} from 'vue'
 import { useStore } from "vuex";
 import { useRouter,useRoute } from "vue-router"
 
@@ -49,6 +49,14 @@ export default defineComponent({
     let list = computed(()=>{
       return store.state.list
     })
+
+    let add = (val)=>{
+      console.log(val)
+      list.push({
+        title: val,
+        complete:false
+      })
+    }
     //全局路由对象
     let router = useRouter()
     //当前路由对象
@@ -84,7 +92,8 @@ export default defineComponent({
 
     return{
       list,
-      gotoAbout
+      gotoAbout,
+      add
       // ...toRefs(data),
       // num1,
       // clickNum,

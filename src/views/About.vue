@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {defineComponent} from 'vue'
+import {defineComponent,ref} from 'vue'
 import {useRouter} from 'vue-router'
 
 export default defineComponent({

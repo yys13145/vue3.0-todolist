@@ -11,11 +11,12 @@
 import {defineComponent,ref} from 'vue'
 export default defineComponent({
   name: 'navHeader',
-  setup(){
+  setup(props,ctx){
     let value = ref('')
 
     let enter = () =>{
-      console.log(value.value)
+      //通过分发把子组件的值传递给父组件
+      ctx.emit('add',value.value)
     }
 
     return{
