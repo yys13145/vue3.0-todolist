@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import {defineComponent,ref} from 'vue'
+import {defineComponent,computed} from 'vue'
 export default defineComponent({
   name: 'navFooter',
   props:{
@@ -17,10 +17,19 @@ export default defineComponent({
       required:true
     }
   },
-  setup(){
-    let isComplete = ref(1)
+  setup(props,ctx){
+    let isComplete = computed(()=>{
+      let arr = props.list.filter(item=>{
+        return item.complete
+      })
+      return arr.length
+    })
     let clear = () =>{
-      console.log("clear!")
+      let arr = props.list.filter(item=>{
+        return item.complete === false
+      })
+      console.log(arr)
+      ctx.emit('clear',arr)
     }
     return{
       isComplete,

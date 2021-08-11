@@ -1,15 +1,21 @@
 <template>
-  <div v-for="item,index in list" :key="index">
-    <div class="item">
-      <input type="checkbox" v-model="item.complete" />
-        {{item.title}}
-      <button @click="del(item,index)">删除</button>
+  <div v-if="list.length>0">
+    <div v-for="item,index in list" :key="index">
+      <div class="item">
+        <input type="checkbox" v-model="item.complete" />
+          {{item.title}}
+        <button @click="del(item,index)">删除</button>
+      </div>
     </div>
+  </div>
+  <div v-else>
+    暂无任务
   </div>
 </template>
 
 <script>
 import {defineComponent,ref} from 'vue'
+import { useStore } from "vuex";
 export default defineComponent({
   name: 'navMain',
   props:{
@@ -19,8 +25,10 @@ export default defineComponent({
     }
   },
   setup(){
+    let store = useStore()
     let del = (item,index) => {
       console.log(item,index)
+      store.commit('deleteTodo',index)
     }
     return{
       del

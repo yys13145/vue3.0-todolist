@@ -17,6 +17,7 @@ export default defineComponent({
     let enter = () =>{
       //通过分发把子组件的值传递给父组件
       ctx.emit('add',value.value)
+      value.value = ""
     }
 
     return{

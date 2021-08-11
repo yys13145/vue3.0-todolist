@@ -2,7 +2,7 @@
   <div class="main"> 
     <nav-header @add="add"></nav-header>
     <nav-main :list='list'></nav-main>
-    <nav-footer :list='list'></nav-footer>
+    <nav-footer :list='list' @clear="clear"></nav-footer>
     <!-- <div @click="clickNum">{{ num }}</div>
     <div @click="clickNum1">{{ num1 }}</div> -->
   <!-- <div>{{ name }}</div>
@@ -52,10 +52,22 @@ export default defineComponent({
 
     let add = (val)=>{
       console.log(val)
-      list.push({
-        title: val,
-        complete:false
+      let flag = true
+      list.value.map(item=>{
+        if(item.title === val){
+          let flag = false
+          alert("重复添加，请重新输入！")
+        }
       })
+      if(flag){
+        store.commit("addTodo",{
+          title: val,
+          complete:false
+        })   
+      }
+    }
+    let clear = (arr)=>{
+      store.commit("clearComplete",arr)  
     }
     //全局路由对象
     let router = useRouter()
@@ -93,7 +105,8 @@ export default defineComponent({
     return{
       list,
       gotoAbout,
-      add
+      add,
+      clear
       // ...toRefs(data),
       // num1,
       // clickNum,
